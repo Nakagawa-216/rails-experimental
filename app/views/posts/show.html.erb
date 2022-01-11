@@ -1,1 +1,12 @@
-TEST
+<%= @post.id %>
+<%= @post.title %>
+
+<h2>Comments</h2>
+<%= form_with model: @post_comment, url: post_comments_path(post_id: @post.id), local: true do |f| %>
+  <%= f.text_field :body, placeholder: 'コメント' %>
+  <%= f.submit "送信" %>
+<% end %>
+
+<% @post.post_comments.each do |post_comment| %>
+  <%= post_comment.body %>
+<% end %>
